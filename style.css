@@ -65,6 +65,7 @@ body{
     transform:skewX(-25deg);
     opacity:0;
     animation:shine 22.6s linear infinite;
+    display:none;
 }
 
 .name{
