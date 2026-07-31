@@ -2,8 +2,8 @@ const lowerThird = document.querySelector(".lower-third");
 
 const SHOW_DURATION = 30000;      // tampil 30 detik
 const FIRST_DELAY = 2000;         // tunda awal 2 detik
-const MIN_DELAY = 30000;          // jeda minimum 30 detik
-const MAX_DELAY = 40000;          // jeda maksimum 40 detik
+const MIN_DELAY = 120000;          // jeda minimum 120 detik
+const MAX_DELAY = 120000;          // jeda maksimum 120 detik
 const MAX_SHOW = 3;               // tampil 3 kali
 
 let showCount = 0;
