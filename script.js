@@ -1,29 +1,42 @@
-async function updateData(){
+const lowerThird = document.querySelector(".lower-third");
 
-    try{
+const SHOW_DURATION = 30000;      // tampil 30 detik
+const FIRST_DELAY = 2000;         // tunda awal 2 detik
+const MIN_DELAY = 30000;          // jeda minimum 30 detik
+const MAX_DELAY = 40000;          // jeda maksimum 40 detik
+const MAX_SHOW = 3;               // tampil 3 kali
 
-        const response=await fetch("data.json?t="+Date.now());
+let showCount = 0;
 
-        const data=await response.json();
-
-        document.getElementById("nama").textContent=data.nama;
-
-        document.getElementById("jabatan").textContent=data.jabatan;
-
-        if(data.logo){
-
-            document.getElementById("logo").src=data.logo;
-
-        }
-
-    }catch(e){
-
-        console.log(e);
-
-    }
-
+function randomDelay() {
+    return Math.floor(Math.random() * (MAX_DELAY - MIN_DELAY + 1)) + MIN_DELAY;
 }
 
-updateData();
+function showLowerThird() {
 
-setInterval(updateData,1000);
+    if (showCount >= MAX_SHOW) return;
+
+    // Reset animasi
+    lowerThird.classList.remove("show");
+    void lowerThird.offsetWidth;
+
+    // Jalankan animasi
+    lowerThird.classList.add("show");
+    showCount++;
+
+    // Setelah 30 detik
+    setTimeout(() => {
+
+        // Hapus class agar siap diputar lagi
+        lowerThird.classList.remove("show");
+
+        // Jika belum 3 kali, jadwalkan kemunculan berikutnya
+        if (showCount < MAX_SHOW) {
+            setTimeout(showLowerThird, randomDelay());
+        }
+
+    }, SHOW_DURATION);
+}
+
+// Tampil pertama setelah 2 detik
+setTimeout(showLowerThird, FIRST_DELAY);
