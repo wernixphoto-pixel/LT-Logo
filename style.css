@@ -19,8 +19,15 @@ body{
     bottom:70px;
     display:flex;
     align-items:center;
+
     opacity:0;
-    animation:showHide 22.6s cubic-bezier(.22,.61,.36,1);
+    transform:translateX(-80px);
+    will-change:transform, opacity;
+}
+
+/* Ditambahkan oleh JavaScript */
+.lower-third.show{
+    animation:showHide 30s forwards;
 }
 
 /* LOGO */
@@ -49,81 +56,47 @@ body{
     padding-right:20px;
 }
 
-.content::after{
-    content:"";
-    position:absolute;
-    top:-10%;
-    left:-60px;
-    width:60px;
-    height:120%;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.85),
-        transparent
-    );
-    transform:skewX(-25deg);
-    opacity:0;
-    animation:shine 22.6s linear infinite;
-    display:none;
-}
-
 .name{
     font-size:46px;
     font-weight:700;
     color:#fff;
+    line-height:1.05;
     text-shadow:
         0 0 4px #000,
         0 0 12px rgba(255,255,255,.35);
 }
 
 .position{
-    margin-top:3px;
+    margin-top:2px;          /* sebelumnya 8px */
     font-size:22px;
+    line-height:1;
     letter-spacing:5px;
     color:rgba(255,255,255,.9);
     text-shadow:0 0 4px #000;
 }
 
+/* Animasi tampil 30 detik */
+
 @keyframes showHide{
 
-0%,13.27%{
-    opacity:0;
-    transform:translateX(-80px);
-}
+    0%{
+        opacity:0;
+        transform:translateX(-80px);
+    }
 
-16.81%,83.19%{
-    opacity:1;
-    transform:translateX(0);
-}
+    4%{
+        opacity:1;
+        transform:translateX(0);
+    }
 
-86.73%,100%{
-    opacity:0;
-    transform:translateX(-80px);
-}
+    90%{
+        opacity:1;
+        transform:translateX(0);
+    }
 
-}
-
-@keyframes shine{
-
-0%,16.8%{
-    left:-60px;
-    opacity:0;
-}
-
-17%{
-    left:-60px;
-    opacity:1;
-}
-
-20%{
-    left:calc(100% + 15px);
-    opacity:1;
-}
-
-20.1%,100%{
-    left:calc(100% + 15px);
-    opacity:0;
-}
+    100%{
+        opacity:0;
+        transform:translateX(-80px);
+    }
 
 }
